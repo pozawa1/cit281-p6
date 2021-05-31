@@ -1,37 +1,90 @@
-## Welcome to GitHub Pages
+# Objectives
+1. Gain more experience creating and working with classes
+2. Gain experience creating and working with classes with inheritance
 
-You can use the [editor on GitHub](https://github.com/pozawa1/cit281-p6/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+# Technologies Used
+- VSCode
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# Part 1
+Complete [Lab 6](https://pozawa1.github.io/cit281-lab6/)
 
-### Markdown
+# Part 2
+Complete [Lab 7](https://pozawa1.github.io/cit281-lab7/)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+# Part 3
+Create p6.js in the cit281/p6 folder.
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+# Part 4
+Create a Shape class that returns the perimeter value. 
+```
+class Shape {
+    constructor(sides = []) {
+        this.sides = sides;
+    } 
+    perimeter = () => (this.sides.length > 0 ? this.sides.reduce((sum, side) => sum + side, 0) : 0);
+}
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+# Part 5
+Create a Rectangle class that inherits from the Shape class and returns the area value. 
+```
+class Rectangle extends Shape {
+    constructor(length = 0, width = 0) {
+        super([length, width, length, width]); 
+        this.length = length;
+        this.width = width;
+    }
+    area() {
+        return this.length * this.width;
+    } 
+}
+```
 
-### Jekyll Themes
+# Part 6
+Create a Triangle class that inherits from the Shape class and returns the area value. 
+```
+class Triangle extends Shape {
+    constructor(sideA = 0, sideB = 0, sideC = 0) {
+        super([sideA, sideB, sideC]);
+        this.sideA = sideA;
+        this.sideB = sideB;
+        this.sideC = sideC;
+    }
+    area() {
+        let s = (this.sideA + this.sideB + this.sideC) / 2;
+        return Math.sqrt(s * (s - this.sideA) * (s - this.sideB) * (s - this.sideC));
+    }
+}
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/pozawa1/cit281-p6/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+# Part 7
+Create a generic block of code for processing the following array of sides arrays.
+```
+const data = [ [3, 4], [5, 5], [3, 4, 5], [10], [] ];
 
-### Support or Contact
+// Check if values of array are the same 
+const equalValues = data => data.every( num => num === data[0]);
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+for (let i = 0; i < data.length; i++) {
+    let numbers = data[i].toString();
+    switch(data[i].length) {
+        case 2:
+            if (equalValues(data[i]) === true) {
+                console.log(`Square with sides ${numbers} has perimeter of ${new Rectangle(...data[i]).perimeter()} and area of ${new Rectangle(...data[i]).area()}`)
+            } else {
+            console.log(`Rectangle with sides ${numbers} has perimeter of ${new Rectangle(...data[i]).perimeter()} and area of ${new Rectangle(...data[i]).area()}`);
+            } break;
+        case 3:
+            console.log(`Triangle with sides ${numbers} has perimeter of ${new Triangle(...data[i]).perimeter()} and area of ${new Triangle(...data[i]).area()}`);
+            break;
+        default:
+            console.log(`Shape with ${data[i].length} side unsupported`);
+            break;
+    }
+}
+```
+
+Output:
+
+![p6-01](https://user-images.githubusercontent.com/83732149/120240274-00e45d80-c215-11eb-8c9c-87d174e365f1.png)
+
