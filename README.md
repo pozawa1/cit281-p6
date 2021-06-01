@@ -88,3 +88,6 @@ Output:
 
 ![p6-01](https://user-images.githubusercontent.com/83732149/120240274-00e45d80-c215-11eb-8c9c-87d174e365f1.png)
 
+[Source Code](https://github.com/pozawa1/cit281-p6/blob/main/source-code-p6)
+
+[Return to Homepage](https://pozawa1.github.io/)
